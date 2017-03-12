@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils import timezone
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
+    rate = models.IntegerField(validators=[MaxValueValidator(5),MinValueValidator(1)], default=None )
     title = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(
