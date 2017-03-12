@@ -19,6 +19,8 @@ def post_new(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
+            print(request.user)
+            print(type(request.user))
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
